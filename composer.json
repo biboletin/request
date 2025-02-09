@@ -1,0 +1,25 @@
+{
+    "name": "biboletin/request",
+    "description": "HTTP Request class based on PSR-7",
+    "type": "library",
+    "version": "v1.0.0",
+    "keywords": ["http", "request", "biboletin"],
+    "homepage": "https://github.com/biboletin/request",
+    "require": {
+        "psr/http-message": "^2.0@dev"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Biboletin\\Request\\": "src/",
+            "Biboletin\\Request\\Facades\\": "src/Facades/"
+        }
+    },
+    "authors": [
+        {
+            "name": "biboletin",
+            "email": "shady_fan@abv.bg"
+        }
+    ],
+    "minimum-stability": "dev"
+}
