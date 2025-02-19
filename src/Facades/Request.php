@@ -2,7 +2,7 @@
 
 namespace Biboletin\Request\Facades;
 
-use Biboletin\Request\BaseRequest;
+use Bibo\Core\Request\BaseRequest;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 

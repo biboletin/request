@@ -106,7 +106,7 @@ class Uri implements UriInterface
         if ($this->port !== null && $this->port !== $this->getStandardPort()) {
             $authority .= ':' . $this->port;
         }
-        return $authority;
+        return ltrim($authority, '@');
     }
 
     /**
@@ -223,8 +223,9 @@ class Uri implements UriInterface
     public function withPort(?int $port): UriInterface
     {
         if ($port !== null && ($port < 1 || $port > 65535)) {
-            throw new InvalidArgumentException('Invalid port: ' . $port);
+            throw new InvalidArgumentException('Port must be between 1 and 65535.');
         }
+
         $new = clone $this;
         $new->port = $port;
         return $new;
@@ -291,10 +292,14 @@ class Uri implements UriInterface
 
         if ($this->path !== '') {
             if ($uri !== '' && $this->path[0] !== '/') {
-                $uri .= '/';
+                $uri .= '/' . $this->path;
+            } elseif ($this->host === '' && str_starts_with($this->path, '//')) {
+                $uri .= '/' . ltrim($this->path, '/');
+            } else {
+                $uri .= $this->path;
             }
-            $uri .= $this->path;
         }
+
 
         if ($this->query !== '') {
             $uri .= '?' . $this->query;
